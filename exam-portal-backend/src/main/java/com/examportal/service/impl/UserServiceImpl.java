@@ -46,4 +46,18 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         userRepo.deleteById(id);
     }
+
+    @Override
+    public User updateUser(User user, Long id) {
+        User existingUser = userRepo.findById(id).orElseThrow(()->new RuntimeException("user not found"));
+        existingUser.setUsername(user.getUsername());
+        existingUser.setPassword(user.getPassword());
+        existingUser.setFirstName(user.getFirstName());
+        existingUser.setFirstName(user.getLastName());
+        existingUser.setEmail(user.getEmail());
+        existingUser.setPhone(user.getPhone());
+        existingUser.setProfileUrl(user.getProfileUrl());
+        userRepo.save(existingUser);
+        return existingUser;
+    }
 }
