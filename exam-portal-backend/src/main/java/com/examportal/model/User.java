@@ -15,13 +15,14 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
+    private String profileUrl;
 
     private boolean enabled = true;
 
     public User() {
     }
 
-    public User(Long id, String username, String password, String firstName, String lastName, String email, String phone, boolean enabled) {
+    public User(Long id, String username, String password, String firstName, String lastName, String email, String phone, boolean enabled, String profileUrl) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -30,6 +31,7 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.enabled = enabled;
+        this.profileUrl = profileUrl;
     }
 
     public Long getId() {
@@ -94,5 +96,13 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getProfileUrl() {
+        return profileUrl;
+    }
+
+    public void setProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
     }
 }
