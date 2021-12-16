@@ -1,5 +1,6 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService:UserService) { }
 
   public user ={
     username:'',
@@ -28,6 +29,15 @@ export class SignupComponent implements OnInit {
       alert("Fields cannot be empty");
       return;
     }
+    
+    this.userService.addUser(this.user).subscribe(
+      (data)=>{
+        console.log(data);
+        alert("user inserted successfully");
+
+      },
+      
+    );
   }
 
 }
