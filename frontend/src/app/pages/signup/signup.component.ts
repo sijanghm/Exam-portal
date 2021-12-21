@@ -61,7 +61,11 @@ export class SignupComponent implements OnInit {
     this.userService.addUser(this.user).subscribe(
       (data)=>{
         console.log(data);
-        alert("user inserted successfully");
+        this._snackBar.open("User Inserted Successfully","ok",{
+          verticalPosition:"top",
+          duration:2500
+
+        })
 
       },
       (error)=>{
