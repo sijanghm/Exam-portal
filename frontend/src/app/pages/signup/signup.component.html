@@ -11,7 +11,8 @@
                     <mat-form-field appearance="fill" class="full-width">
                         <mat-label >Username</mat-label>
                         <input [(ngModel)]= "user.username" name = "username"matInput placeholder="Enter Username">
-                      </mat-form-field>
+                    <mat-hint>Username must be unique</mat-hint>  
+                    </mat-form-field>
 
                       <!-- Password  -->
                     <mat-form-field appearance="fill" class="full-width">

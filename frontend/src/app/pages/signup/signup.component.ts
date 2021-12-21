@@ -1,5 +1,6 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService,private _snackBar: MatSnackBar) { }
 
   public user ={
     username:'',
@@ -26,7 +27,34 @@ export class SignupComponent implements OnInit {
   formSubmit(){
     console.log(this.user);
     if(this.user.email == ''|| this.user.email == null){
-      alert("Fields cannot be empty");
+      this._snackBar.open("Email is required",'',{
+        duration:2500,
+        verticalPosition:'top'
+      });
+      return;
+    }
+
+    if(this.user.firstName == ''|| this.user.firstName == null){
+      this._snackBar.open("First Name is required",'',{
+        duration:2500,
+        verticalPosition:'top'
+      });
+      return;
+    }
+
+    if(this.user.lastName == ''|| this.user.lastName == null){
+      this._snackBar.open("Last  Name is required",'',{
+        duration:2500,
+        verticalPosition:'top'
+      });
+      return;
+    }
+
+    if(this.user.username == ''|| this.user.username == null){
+      this._snackBar.open("Username is required",'',{
+        duration:2500,
+        verticalPosition:'top'
+      });
       return;
     }
     
@@ -36,7 +64,11 @@ export class SignupComponent implements OnInit {
         alert("user inserted successfully");
 
       },
-      
+      (error)=>{
+        this._snackBar.open("something went woring","ok",{
+          verticalPosition:'top'
+        })
+      }
     );
   }
 
